@@ -2,25 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('build') {
             steps {
-                checkout scm
-
+                
+                echo "building"
                
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh './jenkins_deploy_prod_docker.sh'
-            }
-        }
-
-        stage('Publish results') {
-            steps {
-                echo "Deployment successful"
-            }
-        }
     }
 
     post {
