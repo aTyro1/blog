@@ -1,7 +1,7 @@
 #!/bin/sh
 
-python3 -m venv new
-source new/bin/activate
-pip install -r requirements.txt
+cd 
+source django/bin/activate
+cd cdac_django
 python3 manage.py test blogs
 python3 manage.py test writers
