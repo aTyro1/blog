@@ -8,7 +8,9 @@ services:
       context: .
     expose:
       - "8000"
-    
+    networks:
+      blogs:
+
   nginx:
     build: ./nginx
     volumes:
@@ -17,6 +19,18 @@ services:
       - "80:80"
     depends_on:
       - django_gunicorn
+    networks:
+      blogs:
 
 volumes:
   static:
+
+networks:
+  blogs:
+    ipam:
+      driver: default
+      config: 
+        - subnet: "192.168.169.0/26"
+        - subnet: "2401:4900:7066:7eeb:13b1:e662:d213:7f79/64"
+
+

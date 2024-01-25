@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('build') {
+        stage('Unit Test and dockerization') {
             steps {
-                
-                sh 'docker-compose build'
-                echo 'docker-compose build image completed'
+                sh './build.sh'
+                sh 'docker-compose up --build -d'
+
             }
         }
 
