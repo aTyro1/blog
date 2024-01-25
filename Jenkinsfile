@@ -4,6 +4,8 @@ pipeline {
     stages {
         stage('Unit Test and dockerization') {
             steps {
+                sh "chmod +x -R ${env.WORKSPACE}"
+                sh './build.sh'
                 sh 'docker-compose up --build -d'
 
             }
