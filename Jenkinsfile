@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Making WSGI using GUNICORN'){
             steps{
-                sh 'docker build . -d'
+                sh 'docker build .'
             }
         }
         stage('Builiding NGINX reverse PROXY ')
