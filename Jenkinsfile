@@ -8,8 +8,15 @@ pipeline {
                 sh "python3 manage.py test writers"
             }
         }
-        stage('Dockerization'){
+        stage('Making WSGI using GUNICORN'){
             steps{
+                sh 'docker build . -d'
+            }
+        }
+        stage('Builiding NGINX reverse PROXY ')
+        {
+            steps{
+
                 sh 'docker-compose up --build -d'
             }
         }
@@ -19,7 +26,6 @@ pipeline {
     post {
         success {
             echo "Build successful"
-            // You can add additional steps here, like running tests or notifications.
         }
 
         failure {
