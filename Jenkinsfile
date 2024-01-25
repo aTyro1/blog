@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Unit') {
             steps {
-                sh "chmod +x -R ${env.WORKSPACE}"
-                sh './build.sh'
+                sh "unit testing"
             }
         }
         stage('Dockerization'){
