@@ -2,12 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Unit Test and dockerization') {
+        stage('Unit') {
             steps {
                 sh "chmod +x -R ${env.WORKSPACE}"
                 sh './build.sh'
+            }
+        }
+        stage('Dockerization'){
+            steps{
                 sh 'docker-compose up --build -d'
-
             }
         }
 
