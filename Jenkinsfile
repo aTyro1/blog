@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Unit Test and dockerization') {
             steps {
-                sh 'sudo ./build.sh'
                 sh 'docker-compose up --build -d'
 
             }
