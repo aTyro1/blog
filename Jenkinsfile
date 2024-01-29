@@ -26,15 +26,6 @@ pipeline {
     }
 
     post {
-        stage('Performance ')
-        {
-            steps{
-
-                sh 'locust -f locustfile.py -H http://0.0.0.0 -u 1000 -r 10 -t 30s --autostart --autoexit --csv "stats/" '
-
-            }
-        }
-
         success {
             echo "Build successful"
         }
