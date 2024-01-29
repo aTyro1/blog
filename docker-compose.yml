@@ -22,15 +22,19 @@ services:
     networks:
       blogs:
 
+  locust:
+    image: locustio/locust
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./locust:/locust
+    command: -f /locust/locustfile.py -H http://web:8000
+    depends_on:
+      - nginx
 volumes:
   static:
 
 networks:
   blogs:
-    ipam:
-      driver: default
-      config: 
-        - subnet: "192.168.169.0/26"
-        - subnet: "2401:4900:7066:7eeb:13b1:e662:d213:7f79/64"
 
 

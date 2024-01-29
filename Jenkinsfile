@@ -20,6 +20,7 @@ pipeline {
                 sh 'docker-compose up --build -d'
             }
         }
+        stage('Fetch access logs')
 
     }
 
