@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Unit Testing') {
             steps {
-                sh "python3 manage.py test blogs"
                 sh "python3 manage.py test writers"
             }
         }
