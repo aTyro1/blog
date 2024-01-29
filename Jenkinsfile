@@ -13,22 +13,24 @@ pipeline {
                 sh 'docker build .'
             }
         }
-        stage('Builiding NGINX reverse PROXY ')
+        stage('Builiding NGINX reverse PROXY and Load Testing using locust ')
         {
             steps{
 
                 sh 'docker-compose up --build -d'
+                sh './loadlog.sh'
+
             }
         }
 
     }
 
     post {
-        stage('Performance Testing')
+        stage('Performance ')
         {
             steps{
 
-                sh 'locust -f locustfile.py -H http://0.0.0.0 -u 1000 -r 10 -t 300s --autostart --autoexit --csv "stats/" '
+                sh 'locust -f locustfile.py -H http://0.0.0.0 -u 1000 -r 10 -t 30s --autostart --autoexit --csv "stats/" '
 
             }
         }

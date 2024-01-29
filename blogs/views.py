@@ -40,7 +40,7 @@ def default(request):
     total_blogs=blogs.objects.all().values()
     return HttpResponse(home.render({'writer_name_fl':'D','blogs':total_blogs,'writer_name':'Aman','img_path':path,'img':img}))
 def loadArticles(request):
-    if(request.session['default_mode']=='T'):
+    if('default_mode' not in request.session or  request.session['default_mode']=='T'):
         writer_name='Guest'
     else:
         writer_name=request.session['writer']
