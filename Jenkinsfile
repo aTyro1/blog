@@ -20,11 +20,19 @@ pipeline {
                 sh 'docker-compose up --build -d'
             }
         }
-        stage('Fetch access logs')
 
     }
 
     post {
+        stage('Performance Testing')
+        {
+            steps{
+
+                sh 'locust -f locustfile.py -H http://0.0.0.0 -u 1000 -r 10 -t 300s --autostart --autoexit --csv "stats" '
+
+            }
+        }
+
         success {
             echo "Build successful"
         }

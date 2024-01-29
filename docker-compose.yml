@@ -21,16 +21,7 @@ services:
       - django_gunicorn
     networks:
       blogs:
-
-  locust:
-    image: locustio/locust
-    ports:
-      - "8089:8089"
-    volumes:
-      - ./locust:/locust
-    command: -f /locust/locustfile.py -H http://web:8000
-    depends_on:
-      - nginx
+      
 volumes:
   static:
 

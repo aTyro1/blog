@@ -1,5 +1,0 @@
-Method,Name,Error,Occurrences
-GET,/,RemoteDisconnected('Remote end closed connection without response'),448
-GET,/writers,RemoteDisconnected('Remote end closed connection without response'),423
-GET,/home?name=admin&id=admadm,HTTPError('500 Server Error: Internal Server Error for url: /home?name=admin&id=admadm'),461
-GET,/home?name=admin&id=admadm,RemoteDisconnected('Remote end closed connection without response'),477
