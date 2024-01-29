@@ -28,7 +28,7 @@ pipeline {
         {
             steps{
 
-                sh 'locust -f locustfile.py -H http://0.0.0.0 -u 1000 -r 10 -t 300s --autostart --autoexit --csv "stats" '
+                sh 'locust -f locustfile.py -H http://0.0.0.0 -u 1000 -r 10 -t 300s --autostart --autoexit --csv "stats/" '
 
             }
         }
