@@ -6,8 +6,8 @@ do
   if [ $r4 -ne 0 ]
   then
     echo "failed load test"
-    docker stop locust nginx gunicorn
-    docker rm locust nginx gunicorn
+    docker stop locust_container nginx_container gunicorn_container
+    docker rm locust_container nginx_container gunicorn_container
   fi
 done < <(tail -1 stats/_stats.csv)
 

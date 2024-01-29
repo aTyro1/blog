@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   django_gunicorn:
-    container_name: gunicorn
+    container_name: gunicorn_container
     volumes:
       - static:/app/productionfiles/
     build:
@@ -13,7 +13,7 @@ services:
       blogs:
 
   nginx:
-    container_name: nginx
+    container_name: nginx_container
     build: ./nginx
     volumes:
       - static:/app/productionfiles/
@@ -25,7 +25,7 @@ services:
       blogs:
 
   locust:
-    container_name: locust
+    container_name: locust_container
     image: locustio/locust
     ports:
       - "8089:8089"
