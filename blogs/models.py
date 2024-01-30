@@ -5,10 +5,12 @@ from jsonfield import JSONField
 class writer(models.Model):
     writer_name=models.CharField(max_length=30,null=False)
     writer_id=models.CharField(max_length=30,null=False,default='')
+    profile_picture=models.ImageField(upload_to='users/%Y/%m/%d/')
 
 class verified_writer(models.Model):
     writer_name=models.CharField(max_length=30,null=False)
     writer_id=models.CharField(max_length=30,null=False,default='',primary_key=True)
+    profile_picture=models.ImageField(upload_to='users/%Y/%m/%d/')
 
 class blogs(models.Model):
     date=models.DateField(default=date.today())
@@ -18,5 +20,7 @@ class blogs(models.Model):
     writer_name=models.CharField(max_length=200,null=False,default='')
     comments=JSONField(JSONField())
     images=models.ImageField(upload_to='users/%Y/%m/%d/')
+    likes=models.IntegerField(default=0)
+    profile_picture=models.ImageField(upload_to='users/%Y/%m/%d/')
 
 

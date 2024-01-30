@@ -5,3 +5,4 @@ class writer(models.Model):
     password=models.CharField(max_length=10,null=False,default='cdac123')
     email=models.EmailField(max_length=25,null=False,default='')
     writer_id=models.CharField(max_length=30,null=False,default='')
+    profile_picture=models.ImageField(upload_to='users/%Y/%m/%d/')

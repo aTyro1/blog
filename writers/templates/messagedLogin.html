@@ -21,9 +21,7 @@
         <div class="grid grid-cols-1">
        
         
-        <form action="validate" method="POST" style="padding: 5rem;
-        font-size: 18px;
-        box-shadow: 8px 8px #1b3ba3; background-color: #e9e9d8; color: #1b3ba3; border-radius: 22px;"> {% csrf_token %}
+        <form action="validate" method="POST" id="form_i"> {% csrf_token %}
            <b> <p style="color: rgb(179, 42, 42);font-size: 24px;">{{ message }}</p></b>
            <p  style="display: inline; font-size: 48px; color: #1b3ba3;">Login</p>
             <br>

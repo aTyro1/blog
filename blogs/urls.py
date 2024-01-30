@@ -13,6 +13,7 @@ urlpatterns=[
     path('logout',views.default,name='logout'),
     path('changePassword',views.changePassword,name='change Password'),
     path('delete',views.delete,name='delete account'),
-    path('upload',views.upload,name='upload images')
+    path('upload',views.upload,name='upload images'),
+    path('addlike',views.addlike,name='addlike')
     
 ]

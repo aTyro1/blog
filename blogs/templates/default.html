@@ -28,34 +28,39 @@
           <div class="container w-5/5 h-screen" style="display: inherit;">
             <div class="container p-4" style="overflow-y:auto;overflow-x: hidden;">
                 {% for i in blogs %}
-          <div class="container p-2 shadow-lg rounded lazy">
-            <div class="box-content h-72 w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
-                <p style="font-size: 22px;font-weight: bold;">{{ i.title }}</p>
-                <br>
-                <p style="font-size: 12px; color: #1b3ba3; display: inline;">posted by:</p> <p style="font-size: 16px; color: #1b3ba3; font-weight: bold; display: inline;">{{ i.writer_name }}</p><br><p style="display: inline; font-size: 12px; color: #1b3ba3;">on </p><p style="font-size: 16px; color: #1b3ba3; font-weight: bold; display: inline;">{{ i.date }}</p>
-                <br>
-                <hr>
-                <br>
-                <div class="container h-full" style="display: inherit;">
-                  <div style="
-                  overflow-x: hidden;
-                  overflow-y: hidden;
-                  height: 450px;">
-                  {% if i.images != '' %}
-                   <img class="mx-auto shadow-md rounded h-64 w-64" style=" border: 2px solid #1b3ba3;" src="{{ i.images }}">
-                   {% endif %}
-    
-                  <p style="font-size: 14px; text-align: justify; margin-top: 8px;">{{ i.blog }}</p>
-                </div>
-                </div>
-              </div>
-            <div class="container w-full" style="text-align: center;">
-                <form class="mx-auto mt-2" method="GET" action="loadArticles" >
-                    <input type="text" value="{{ i.id }}" name="id" style="color: red; visibility: hidden;">
-                    <input type="submit" style="color: #1b3ba3;" value="(read)" >
-                </form>
-            </div>
-          </div>
+                <div class="container p-2 shadow-lg rounded">
+                    <div class="box-content h-72 w-32 p-2 border-4" style="border-color: #1b3ba3; background-color: white;">
+                      <p style="font-size: 22px;font-weight: bold;">{{ i.title }}</p>
+                      <br>
+                      {% if i.profile_picture != '' %}
+                      <img class="shadow-lg rounded-full h-6 w-6" style="display: inline;" src="{{ i.profile_picture }}">
+                      {% else %}
+                      <img class="mx-auto shadow-lg rounded-full h-4 w-4" src="{% static 'blogs/cdac-logo.png' %}">
+                      {% endif %}
+                     <p style="font-size: 15px; color: #1b3ba3; font-weight: bold; display: inline; margin-left: 5px;">{{ i.writer_name }}</p><br><p style="display: inline;  font-size: 13px; color: #1b3ba3;">on </p><p style="font-size: 13px; color: #1b3ba3; font-weight: bold; display: inline;">{{ i.date }}</p>
+                      <br>
+                      <hr>
+                      <br>
+                      <div class="container h-full" style="display: inherit;">
+                        <div style="
+                        overflow-x: hidden;
+                        overflow-y: hidden;
+                        height: 450px;">
+                        {% if i.images != '' %}
+                         <img class="mx-auto shadow-md rounded h-64 w-64" style=" border: 2px solid #1b3ba3;" src="{{ i.images }}">
+                         {% endif %}
+          
+                        <p style="font-size: 14px;  color: #1b3ba3; font-weight: bold; text-align: justify; margin-top: 8px;">{{ i.blog }}</p>
+                      </div>
+                      </div>
+                    </div>
+                    <div class="container w-full" style="text-align: center;">
+                        <form class="mx-auto mt-2" method="GET" action="loadArticles" >
+                            <input type="text" value="{{ i.id }}" name="id" style="color: red; visibility: hidden;">
+                            <input type="submit" style="color: rgb(36, 30, 1);font-weight: 600;" value="(read)" >
+                        </form>
+                    </div>
+                  </div>
           {% endfor %}
           </div>
           </div>

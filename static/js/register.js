@@ -75,3 +75,7 @@ function startmic()
 {
     alert("starting....");
 }
+function addlike()
+{
+    alert('adding like');
+}

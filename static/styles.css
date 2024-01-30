@@ -7,4 +7,9 @@
     font-family: myFirstFont;
   }
 
-  
+ 
+  @media only screen and (max-width: 600px) {
+    #form_i{
+            padding: 0px;
+    }
+  }

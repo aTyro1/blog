@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'blogs/style.css' %}" >
+  <link rel="stylesheet" href="{% static 'blogs/forms.css' %}" >
 </head>
 
 <body class="mx-auto" style="background-color: #e9e9d8;">
@@ -18,12 +18,10 @@
         <p class="mx-auto" style="display: inline; text-align: center; font-size: 24px;color: gold;">Blogs</p>
       </div>
     <div class="h-screen flex items-center justify-center" style="margin-top: 7rem;">
-        <div class="grid grid-cols-1">
+        <div class="div ">
        
         
-        <form action="validate" method="POST" style="padding: 5rem;
-        font-size: 18px;
-        box-shadow: 8px 8px #1b3ba3; background-color: #e9e9d8; color: #1b3ba3; border-radius: 22px;"> {% csrf_token %}
+        <form action="validate" method="POST" id="form_i"> {% csrf_token %}
            <p  style="display: inline; font-size: 48px; color: #1b3ba3;">Login</p>
             <br>
             <hr>

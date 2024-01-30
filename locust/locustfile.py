@@ -14,6 +14,6 @@ class LoadTestUser(HttpUser):
 
     @task
     def load_articles(self):
-        self.client.get("/loadArticles?id=22")
+        self.client.get("/loadArticles?id=24")
     
 

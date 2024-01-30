@@ -47,6 +47,7 @@ def loadArticles(request):
     print('load articles')
     article=loader.get_template('articles.html')
     a=blogs.objects.filter(id=request.GET.get('id'))
+    request.session['blog_id']=request.GET.get('id')
     print(a[0].id)
     comments=a[0].comments
     writer=a[0].writer_name
@@ -98,7 +99,7 @@ def submit_article(request):
         file_url = fss.url(file)
     blog_content=request.POST['blog']
     blog_title=request.POST['title']
-    b=blogs(images=file_url,title=blog_title,writer_id=request.session['id'],blog=blog_content,writer_name=verified_writer.objects.filter(writer_id=request.session['id'])[0].writer_name)
+    b=blogs(images=file_url,title=blog_title,writer_id=request.session['id'],blog=blog_content,writer_name=verified_writer.objects.filter(writer_id=request.session['id'])[0].writer_name,profile_picture=verified_writer.objects.filter(writer_id=request.session['id'])[0].profile_picture)
     b.save()
     new_submissions_html=loader.get_template('new_submissions.html')
     return HttpResponse(new_submissions_html.render({'message':'submitted successfully!','f_l':request.session['writer'][0].upper()}))
@@ -188,3 +189,19 @@ def upload(request):
     fss = FileSystemStorage()
     file = fss.save(request.POST['file_name'], request.POST['file'])
     return HttpResponse('uploaded!')
+
+
+def addlike(request):
+    if(request.session['default_mode']=='T'):
+        return redirect('/writers/messagedLogin?message='+'please login first !')
+    article=loader.get_template('articles.html')
+    b=blogs.objects.get(id=request.session['blog_id'])
+    comments=b.comments
+    if(request.GET.get('like')=='add'):
+        b.likes+=1
+        b.save()
+        return HttpResponse(article.render({'writer_name':request.session['writer'],'writer_name_fl':request.session['writer'][0].upper(),'date':b.date,'title':b.title,'blog':b.blog,'comments':comments,'blog_id':b.id,'image':b.images}))
+    else:
+        b.likes-=1
+        b.save()
+        return HttpResponse(article.render({'writer_name':request.session['writer'],'writer_name_fl':request.session['writer'][0].upper(),'date':b.date,'title':b.title,'blog':b.blog,'comments':comments,'blog_id':b.id,'image':b.images}))

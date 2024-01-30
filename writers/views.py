@@ -11,6 +11,7 @@ from email.mime.multipart import MIMEMultipart
 import smtplib 
 import os 
 import math, random
+from django.core.files.storage import FileSystemStorage
 
 writer_created_email=''
 writer_created_name=''
@@ -55,9 +56,15 @@ def step1(req):
     c_writer_id=writer_name[:3]+writer_password[:3]
     success_page=loader.get_template('registration_success.html')
     pass_register=loader.get_template('password_auth.html')
-    writer_new=writer(first_name=writer_name,email=writer_email,password=writer_password,writer_id=c_writer_id)
+    if(req.FILES['profile_picture']):
+        upload = req.FILES['profile_picture']
+        fss = FileSystemStorage()
+        file = fss.save(upload.name, upload)
+        file_url = fss.url(file)
+    writer_new=writer(profile_picture=file_url,first_name=writer_name,email=writer_email,password=writer_password,writer_id=c_writer_id)
+    
     writer_new.save()
-    v=verified_writer(writer_name=writer_name,writer_id=c_writer_id)
+    v=verified_writer(profile_picture=file_url,writer_name=writer_name,writer_id=c_writer_id)
     v.save()
     return HttpResponse(success_page.render({'message':'Registration Success!'}))
 
